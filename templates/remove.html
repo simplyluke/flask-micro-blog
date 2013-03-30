@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block body %}
+<ul class="removePosts">
+<form action="{{ url_for("delete_post") }}" method="post">
+{% for post in posts %}
+		
+			<li class="postTitle">{{ post.title }}<input type="checkbox" name="id" value="{{ post.id }}" class="deleteCheck"/></li>
+{% endfor %}	
+<input type="submit" name="Delete" value="Delete" class="deleteSubmit" />
+</form>
+</ul>
+{% endblock %}
+ 

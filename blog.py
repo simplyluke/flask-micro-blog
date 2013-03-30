@@ -39,7 +39,7 @@ def view_blogs():
 
 @app.route('/post')
 def post_form_render():
-	return flask.render_template('add.html')
+	return flask.render_template('add.html', posts=posts)
 
 @app.route('/serveraddpost', methods=['POST'])
 def add_post():
@@ -47,6 +47,18 @@ def add_post():
 	flask.g.db.commit()
 	return flask.redirect(flask.url_for('view_blogs'))
 
+@app.route('/remove')
+def view_blogs_remove():
+	current = flask.g.db.execute('SELECT id, title FROM posts ORDER BY id desc')
+	posts = [dict(id=row[0], title=row[1]) for row in current.fetchall()]
+	return flask.render_template('remove.html', posts=posts)
+
+@app.route('/delete', methods=['POST'])
+def delete_post():
+	flask.g.db.execute('DELETE FROM posts WHERE id=(?)', [flask.request.form['id']])
+	flask.g.db.commit()
+	flask.flash('Task removed successfully')
+	return flask.redirect(flask.url_for('view_blogs'))
 
 
 if __name__ == '__main__':
