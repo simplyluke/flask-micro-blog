@@ -1,0 +1,6 @@
+DROP TABLE if EXISTS posts;
+CREATE TABLE posts (
+	id INTEGER PRIMARY KEY autoincrement,
+	title STRING NOT NULL,
+	body STRING NOT NULL
+);

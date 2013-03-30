@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block body %}
+<section class="posts">
+	{% for post in posts %}
+		<article class="post">
+			<h2 class="postTitle">{{ post.title }}</h2>
+			<div class="postBody">
+				{{ post.body|safe }}
+			</div>
+		</article>
+	{% else %}
+		<h2>No posts!</h2>
+	{% endfor %}
+</section>
+{% endblock %}
