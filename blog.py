@@ -40,8 +40,6 @@ def view_blogs():
 
 @app.route('/post')
 def post_form_render():
-    current = flask.g.db.execute('SELECT id, title, body FROM posts ORDER BY id desc')
-    posts = [dict(id=row[0], title=row[1], body=row[2]) for row in current.fetchall()]	
     return flask.render_template('post.html', posts=posts)
 
 @app.route('/serveraddpost', methods=['POST'])
