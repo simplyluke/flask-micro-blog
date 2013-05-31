@@ -40,7 +40,7 @@ def view_blogs():
 
 @app.route('/post')
 def post_form_render():
-    return flask.render_template('add.html')
+    return flask.render_template('post.html')
 
 @app.route('/serveraddpost', methods=['POST'])
 def add_post():
@@ -74,7 +74,7 @@ def login():
             flask.session['logged_in'] = True
             return flask.redirect(flask.url_for('view_blogs'))
     else:
-        return redirect(url_for('view_blogs'))
+        return flask.redirect(flask.url_for('view_blogs'))
 
 @app.route('/logout')
 def logout():
